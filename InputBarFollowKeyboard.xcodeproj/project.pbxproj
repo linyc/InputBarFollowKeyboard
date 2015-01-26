@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		74BABDF11A7621E0003A27F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BABDF01A7621E0003A27F9 /* main.m */; };
 		74BABDF41A7621E0003A27F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BABDF31A7621E0003A27F9 /* AppDelegate.m */; };
-		74BABDF71A7621E0003A27F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BABDF61A7621E0003A27F9 /* ViewController.m */; };
+		74BABDF71A7621E0003A27F9 /* KbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BABDF61A7621E0003A27F9 /* KbViewController.m */; };
 		74BABDFA1A7621E0003A27F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BABDF81A7621E0003A27F9 /* Main.storyboard */; };
 		74BABDFC1A7621E0003A27F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74BABDFB1A7621E0003A27F9 /* Images.xcassets */; };
 		74BABDFF1A7621E0003A27F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74BABDFD1A7621E0003A27F9 /* LaunchScreen.xib */; };
 		74BABE0B1A7621E0003A27F9 /* InputBarFollowKeyboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BABE0A1A7621E0003A27F9 /* InputBarFollowKeyboardTests.m */; };
+		74BABE161A76284B003A27F9 /* InputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BABE151A76284B003A27F9 /* InputBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +33,16 @@
 		74BABDF01A7621E0003A27F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		74BABDF21A7621E0003A27F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		74BABDF31A7621E0003A27F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		74BABDF51A7621E0003A27F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		74BABDF61A7621E0003A27F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		74BABDF51A7621E0003A27F9 /* KbViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KbViewController.h; sourceTree = "<group>"; };
+		74BABDF61A7621E0003A27F9 /* KbViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KbViewController.m; sourceTree = "<group>"; };
 		74BABDF91A7621E0003A27F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74BABDFB1A7621E0003A27F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		74BABDFE1A7621E0003A27F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		74BABE041A7621E0003A27F9 /* InputBarFollowKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InputBarFollowKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BABE091A7621E0003A27F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74BABE0A1A7621E0003A27F9 /* InputBarFollowKeyboardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputBarFollowKeyboardTests.m; sourceTree = "<group>"; };
+		74BABE141A76284B003A27F9 /* InputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputBar.h; sourceTree = "<group>"; };
+		74BABE151A76284B003A27F9 /* InputBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +84,11 @@
 		74BABDED1A7621E0003A27F9 /* InputBarFollowKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				74BABE171A762854003A27F9 /* InputBarView */,
 				74BABDF21A7621E0003A27F9 /* AppDelegate.h */,
 				74BABDF31A7621E0003A27F9 /* AppDelegate.m */,
-				74BABDF51A7621E0003A27F9 /* ViewController.h */,
-				74BABDF61A7621E0003A27F9 /* ViewController.m */,
+				74BABDF51A7621E0003A27F9 /* KbViewController.h */,
+				74BABDF61A7621E0003A27F9 /* KbViewController.m */,
 				74BABDF81A7621E0003A27F9 /* Main.storyboard */,
 				74BABDFB1A7621E0003A27F9 /* Images.xcassets */,
 				74BABDFD1A7621E0003A27F9 /* LaunchScreen.xib */,
@@ -117,6 +121,15 @@
 				74BABE091A7621E0003A27F9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		74BABE171A762854003A27F9 /* InputBarView */ = {
+			isa = PBXGroup;
+			children = (
+				74BABE141A76284B003A27F9 /* InputBar.h */,
+				74BABE151A76284B003A27F9 /* InputBar.m */,
+			);
+			name = InputBarView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +232,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74BABDF71A7621E0003A27F9 /* ViewController.m in Sources */,
+				74BABDF71A7621E0003A27F9 /* KbViewController.m in Sources */,
 				74BABDF41A7621E0003A27F9 /* AppDelegate.m in Sources */,
+				74BABE161A76284B003A27F9 /* InputBar.m in Sources */,
 				74BABDF11A7621E0003A27F9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +428,7 @@
 				74BABE101A7621E0003A27F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		74BABE111A7621E0003A27F9 /* Build configuration list for PBXNativeTarget "InputBarFollowKeyboardTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +437,7 @@
 				74BABE131A7621E0003A27F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
