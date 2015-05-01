@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InputBar.h"
+#import "YCInputBar.h"
 
-@interface KbViewController : UIViewController<InputBarDelegate>
+@interface KbViewController : UIViewController<YCInputBarDelegate>
 
 
 @end
