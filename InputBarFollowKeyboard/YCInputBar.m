@@ -83,15 +83,18 @@
     }
     return self;
 }
+#pragma mark - public function
 -(void)ShowKeyboard
 {
     [_txtInput becomeFirstResponder];
+    [self textView:_txtInput shouldChangeTextInRange:NSRangeFromString(_txtInput.text) replacementText:_txtInput.text];
 }
 -(void)RemoveSelf
 {
     [_viewInputBar removeFromSuperview];
     _viewInputBar = nil;
 }
+#pragma mark - private function
 -(void)sendBtnClick
 {
     //主view那边判断完再隐藏键盘
@@ -103,6 +106,15 @@
         _txtInput.text = nil;
         
         _viewInputBar.frame = CGRectMake(0, screenRect.size.height, screenRect.size.width, 44);
+        
+    }
+}
+-(void)hideBtnClick
+{
+    [_txtInput resignFirstResponder];
+    
+    if ([self.delegate respondsToSelector:@selector(WhenHide)]) {
+        [self.delegate WhenHide];
     }
 }
 #pragma mark - textView delegate
@@ -130,14 +142,6 @@
     barRect.size.height = txtViewsize.height + 15;
     barRect.origin.y = _keyboardOriginY - barRect.size.height;
     _viewInputBar.frame = barRect;
-}
--(void)hideBtnClick
-{
-    [_txtInput resignFirstResponder];
-    
-    if ([self.delegate respondsToSelector:@selector(WhenHide)]) {
-        [self.delegate WhenHide];
-    }
 }
 #pragma mark - keyboard notification
 -(void)keyboardShow:(NSNotification*)notification
