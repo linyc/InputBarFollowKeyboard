@@ -7,7 +7,7 @@
 ![](https://github.com/linyc/InputBarFollowKeyboard/raw/master/show.gif)
 
 #Usage
-1. 把这几个文件导入你都项目 （Add these files to your project）
+1、 把这几个文件导入你都项目 （Add these files to your project）
 
 `UITextViewPlaceholder.h`
 
@@ -17,11 +17,11 @@
 
 `YCInputBar.m`
 
-2. 把 `#import "YCInputBar.h"` 加到你要使用的ViewController的头部 （add `#import "YCInputBar.h"` to your ViewController header）
+2、 把 `#import "YCInputBar.h"` 加到你要使用的ViewController的头部 （add `#import "YCInputBar.h"` to your ViewController header）
 
-3. 添加代理 `<YCInputBarDelegate>` （add delegate `<YCInputBarDelegate>`）
+3、 添加代理 `<YCInputBarDelegate>` （add delegate `<YCInputBarDelegate>`）
 
-4. 
+4、 
 ``` 
 - (void)viewDidLoad {
     [super viewDidLoad];
