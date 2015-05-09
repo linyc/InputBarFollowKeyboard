@@ -21,7 +21,7 @@
 
 3、 添加代理 `<YCInputBarDelegate>` （add delegate `<YCInputBarDelegate>`）
 
-4、 
+4、 添加一个属性（add property） `@property (nonatomic,strong) YCInputBar *bar;` 
 ``` 
 - (void)viewDidLoad {
     [super viewDidLoad];
