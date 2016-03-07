@@ -5,12 +5,12 @@
 
 ![](https://github.com/linyc/InputBarFollowKeyboard/raw/master/show.gif)
 
-#Usage
-1、 把这几个文件导入你都项目
+#如何使用
+1、 把文件夹｀YCInputBar｀拖入你的项目，包含以下4个文件
 
-`UITextViewPlaceholder.h`
+`YCTextViewPlaceholder.h`
 
-`UITextViewPlaceholder.m`
+`YCTextViewPlaceholder.m`
 
 `YCInputBar.h`
 
@@ -48,7 +48,7 @@
     NSLog(@"收起键盘");
 }
 ```
-#Or use pods
+#或者使用 pod 进行导入
 `pod 'InputBarFollowKeyboard', :git => 'https://github.com/linyc/InputBarFollowKeyboard.git'`
 
 #License
@@ -64,11 +64,11 @@ An Input Control that it is adsorb on the keyboard, follow the keyboard 's hide 
 ![](https://github.com/linyc/InputBarFollowKeyboard/raw/master/show.gif)
 
 #Usage
-1、 Add these files to your project
+1、 Add the folder of `YCInputBar` to your project,it's include 4 file
 
-`UITextViewPlaceholder.h`
+`YCTextViewPlaceholder.h`
 
-`UITextViewPlaceholder.m`
+`YCTextViewPlaceholder.m`
 
 `YCInputBar.h`
 
