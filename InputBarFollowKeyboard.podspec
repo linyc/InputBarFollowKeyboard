@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "InputBarFollowKeyboard"
-  s.version      = "0.1.1"
+  s.name         = "YCInputBar"
+  s.version      = "0.2.1"
   s.summary      = "数据控件把输入框附加在键盘上方，随键盘出现而出现，随键盘隐藏而隐藏"
 
   s.description  = <<-DESC
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "linyc" => "email@address.com" }
+  s.author             = { "linyc" => "linycc@sina.cn" }
   # Or just: s.author    = "linyc"
   # s.authors            = { "linyc" => "email@address.com" }
   s.social_media_url   = "http://weibo.com/2219158517"
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/linyc/InputBarFollowKeyboard.git", :tag => "0.1.1" }
+  s.source       = { :git => "https://github.com/linyc/InputBarFollowKeyboard.git", :tag => "0.2.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "InputBarFollowKeyboard/YCInputBar.{h,m}","InputBarFollowKeyboard/UITextViewPlaceholder.{h,m}"
+  s.source_files  = "InputBarFollowKeyboard/YCInputBar/*.{h,m}"
   #s.exclude_files = "InputBarFollowKeyboard/InputBarFollowKeyboard/AppDelegate.{h,m}"
 
   # s.public_header_files = "Classes/**/*.h"

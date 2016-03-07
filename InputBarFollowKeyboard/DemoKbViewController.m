@@ -6,27 +6,27 @@
 //  Copyright (c) 2015年 LINYC. All rights reserved.
 //
 
-#import "KbViewController.h"
+#import "DemoKbViewController.h"
 #import "YCInputBar.h"
 
-@interface KbViewController ()
+@interface DemoKbViewController ()
 @property (nonatomic,strong) YCInputBar *bar;
 @end
 
-@implementation KbViewController
+@implementation DemoKbViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     //注：initBar参数，如果当前有navigationController，那么这里应该传self.navigationController.view
-    _bar = [[YCInputBar alloc] initBar:self.view sendButtonTitle:@"发表" maxTextLength:30];
+    _bar = [[YCInputBar alloc] initBar:self.view sendButtonTitle:@"评论" maxTextLength:30 isHideOnBottom:YES buttonColor:nil];
     _bar.placeholder = @"说点什么...";
     _bar.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     if (_bar) {
-        [_bar RemoveSelf];
+        [_bar removeSelf];
         _bar = nil;
     }
 }
@@ -36,19 +36,22 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)kbAction:(id)sender {
-    [_bar ShowKeyboard];
+    [_bar showKeyboard];
 }
 #pragma mark - YCBar delegate
--(BOOL)SendButtonClick:(UITextView *)textView
+-(BOOL)sendButtonClick:(UITextView *)textView
 {
     if (textView.text.length == 0 && ![textView.text containsString:@"\n"]) {
         return NO;
     }
+    
+    NSLog(@"你的评论：%@",textView.text);
+    
     return YES;
 }
--(void)WhenHide
+-(void)whenHide
 {
-    //do something...
+    NSLog(@"收起键盘");
 }
 
 @end

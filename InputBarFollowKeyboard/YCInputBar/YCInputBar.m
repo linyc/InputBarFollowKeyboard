@@ -7,7 +7,6 @@
 //
 
 #import "YCInputBar.h"
-#import "UITextViewPlaceholder.h"
 #define screenRect [UIScreen mainScreen].bounds
 
 
@@ -19,7 +18,7 @@
     /**
      *  输入框
      */
-    UITextViewPlaceholder *_txtInput;
+    YCTextViewPlaceholder *_txtInput;
     /**
      *  最大能输入的字符长度
      */
@@ -44,37 +43,49 @@
      *  要附加到的目标view
      */
     UIView *_mainView;
+    
+    /**
+     *  是否要将输入栏隐藏在屏幕下方
+     */
+    BOOL _isHideOnBottom;
 }
 
-
--(YCInputBar*)initBar:(UIView *)mainView sendButtonTitle:(NSString *)title maxTextLength:(NSInteger)length
+-(YCInputBar*)initBar:(UIView *)mainView sendButtonTitle:(NSString *)title maxTextLength:(NSInteger)length isHideOnBottom:(BOOL)isHide buttonColor:(UIColor*)color
 {
     if (self = [super init]) {
         
         _mainView = mainView;
         _maxLength = length;
+        _isHideOnBottom = isHide;
+        
         
         //frame隐藏在屏幕下方
-        _viewInputBar = [[UIView alloc] initWithFrame:CGRectMake(0, screenRect.size.height, screenRect.size.width, 44)];
+        _viewInputBar = [[UIView alloc] initWithFrame:CGRectMake(0, screenRect.size.height+(_isHideOnBottom?0:-44), screenRect.size.width, 44)];
         _viewInputBar.backgroundColor=[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
         
-        _txtInput = [[UITextViewPlaceholder alloc]  initWithFrame:CGRectMake(8, 8, _viewInputBar.bounds.size.width-70, 28)];
+        _btnReply = [UIButton buttonWithType:UIButtonTypeSystem];
+//        _btnReply.frame = CGRectZero;
+        [_viewInputBar addSubview:_btnReply];
+        [_btnReply setTitle:title?title:@"发送" forState:UIControlStateNormal];
+        [_btnReply sizeToFit];
+        _btnReply.frame = CGRectMake(_viewInputBar.bounds.size.width - _btnReply.frame.size.width - 8, 8, _btnReply.bounds.size.width, 28);
+        if(color) [_btnReply setTitleColor:color forState:UIControlStateNormal];
+        _btnReply.enabled=NO;
+        [_btnReply addTarget:self action:@selector(sendBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+        _txtInput = [[YCTextViewPlaceholder alloc]  initWithFrame:CGRectMake(8, 8, _btnReply.frame.origin.x - 16, 28)];
         _txtInput.backgroundColor = [UIColor whiteColor];
         //设置该属性，让输入框随父view的尺寸改变而改变
         _txtInput.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        
         //边框圆角
         _txtInput.layer.cornerRadius = 5;
         _txtInput.layer.borderWidth = 0.8;
         _txtInput.layer.borderColor = [[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1] CGColor];
-        _txtInput.delegate=self;
+        _txtInput.delegate = self;
         [_viewInputBar addSubview:_txtInput];
-        
-        _btnReply = [UIButton buttonWithType:UIButtonTypeSystem];
-        _btnReply.frame = CGRectMake(CGRectGetMaxX(_txtInput.frame)+8, 8, 46, 28);
-        [_btnReply setTitle:title?title:@"发送" forState:UIControlStateNormal];
-        _btnReply.enabled=NO;
-        [_btnReply addTarget:self action:@selector(sendBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        [_viewInputBar addSubview:_btnReply];
         
         [mainView addSubview:_viewInputBar];
         
@@ -84,12 +95,12 @@
     return self;
 }
 #pragma mark - public function
--(void)ShowKeyboard
+-(void)showKeyboard
 {
     [_txtInput becomeFirstResponder];
     [self textView:_txtInput shouldChangeTextInRange:NSRangeFromString(_txtInput.text) replacementText:_txtInput.text];
 }
--(void)RemoveSelf
+-(void)removeSelf
 {
     [_viewInputBar removeFromSuperview];
     _viewInputBar = nil;
@@ -97,15 +108,15 @@
 #pragma mark - private function
 -(void)sendBtnClick
 {
-    //主view那边判断完再隐藏键盘
-    BOOL b = [self.delegate SendButtonClick:_txtInput];
+    //主viewController那边判断完再隐藏键盘
+    BOOL b = [self.delegate sendButtonClick:_txtInput];
     if (b) {
         //        [self.txtInput resignFirstResponder];
         [self hideBtnClick];
         
         _txtInput.text = nil;
         
-        _viewInputBar.frame = CGRectMake(0, screenRect.size.height, screenRect.size.width, 44);
+        _viewInputBar.frame = CGRectMake(0, screenRect.size.height+(_isHideOnBottom?0:-44), screenRect.size.width, 44);
         
     }
 }
@@ -113,8 +124,8 @@
 {
     [_txtInput resignFirstResponder];
     
-    if ([self.delegate respondsToSelector:@selector(WhenHide)]) {
-        [self.delegate WhenHide];
+    if ([self.delegate respondsToSelector:@selector(whenHide)]) {
+        [self.delegate whenHide];
     }
 }
 #pragma mark - textView delegate
@@ -132,15 +143,15 @@
 }
 -(void)textViewDidChange:(UITextView *)textView
 {
-    //让textview随行数自动改变自身的高度
+    //让textview随行数自动改变自身的高度，超过90就不再增加
     CGSize txtViewsize = _txtInput.contentSize;
     if (txtViewsize.height >= 90) {
         return;
     }
     
     CGRect barRect = _viewInputBar.frame;
-    barRect.size.height = txtViewsize.height + 15;
-    barRect.origin.y = _keyboardOriginY - barRect.size.height;
+    barRect.size.height = MAX(txtViewsize.height + 15, 44);
+    barRect.origin.y = _keyboardOriginY - MAX(barRect.size.height, 44);
     _viewInputBar.frame = barRect;
 }
 #pragma mark - keyboard notification
@@ -190,8 +201,10 @@
     }];
     
     CGRect inputRect = _viewInputBar.frame;
-    inputRect.origin.y = CGRectGetMinY(kbRect);
+    inputRect.origin.y = CGRectGetMinY(kbRect)+(_isHideOnBottom?0:-44);
     [_viewInputBar setFrame:inputRect];
+    
+    _txtInput.hidePlaceholderView = NO;
 }
 
 #pragma mark - setPropery
@@ -203,8 +216,7 @@
 #pragma mark -
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

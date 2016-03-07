@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface UITextViewPlaceholder : UITextView
-@property (nonatomic,copy) NSString *placeholder;
+IB_DESIGNABLE
+@interface YCTextViewPlaceholder : UITextView<UITextViewDelegate>
+@property (nonatomic,copy) IBInspectable NSString *placeholder;
 @property (nonatomic,assign) BOOL hidePlaceholderView;
 @end
