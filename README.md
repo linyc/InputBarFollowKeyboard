@@ -49,7 +49,7 @@
 }
 ```
 #或者使用 pod 进行导入
-`pod 'InputBarFollowKeyboard', :git => 'https://github.com/linyc/InputBarFollowKeyboard.git'`
+`pod 'YCInputBar', :git => 'https://github.com/linyc/InputBarFollowKeyboard.git'`
 
 #License
 [MIT License](http://opensource.org/licenses/MIT).
@@ -107,7 +107,7 @@ An Input Control that it is adsorb on the keyboard, follow the keyboard 's hide 
 }
 ```
 #Or use pods
-`pod 'InputBarFollowKeyboard', :git => 'https://github.com/linyc/InputBarFollowKeyboard.git'`
+`pod 'YCInputBar', :git => 'https://github.com/linyc/InputBarFollowKeyboard.git'`
 
 #License
 [MIT License](http://opensource.org/licenses/MIT).
