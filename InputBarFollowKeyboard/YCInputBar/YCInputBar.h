@@ -51,7 +51,7 @@
  */
 -(void)removeSelf;
 
-@property (nonatomic,strong) id <YCInputBarDelegate> delegate;
+@property (nonatomic,weak) id <YCInputBarDelegate> delegate;
 
 /**
  *  默认显示的字符
